@@ -1,0 +1,17 @@
+---
+- name: Site Down
+  hosts: all
+  gather_facts: false
+
+  tasks:
+    - debug:
+        msg: "Website is down!"
+
+    - name: Replace website
+      copy:
+       remote_src: yes
+       src: /opt/site/index.html
+       dest: /var/www/html/
+       owner: apache
+       group: apache
+       mode: '0644'
